@@ -5,7 +5,15 @@ import TaskIcon from '@mui/icons-material/Task';
 import InfoIcon from '@mui/icons-material/Info';
 import LabelIcon from '@mui/icons-material/Label';
 import { Button } from '@mui/material';
-
+function Btn (){
+  const clickHandler= 
+      ()=> console.log('clicked');
+  const mouseOverHandler = 
+      ()=>console.log('hovered');
+  return(
+  <button onClick={clickHandler} onMouseOver={mouseOverHandler}>click or hover</button>
+  )
+}
 function MainNav(){
     const menuItems = [
         {
@@ -39,7 +47,7 @@ function MainNav(){
         <ul className="MainMenuContainer">
             {menuItems.map((item,index)=>(
                 <li key={index} className='MainMenuItem'>
-                    <Button className="MainMenuButton" variant="contained" startIcon={item.icon} size="large">{item.label}</Button>
+                    <Button className="MainMenuButton" variant="contained" startIcon={item.icon} size="large" onClick={Btn.clickHandler} onMouseOver={Btn.mouseOverHandler}>{item.label}</Button>
                 </li>
             ))}
         </ul>
