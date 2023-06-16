@@ -1,0 +1,91 @@
+$font-size-menu:19.2px;
+$font-color-menu:white;
+$width:90%;
+$font-style:"Calibri" ;
+.MainMenuButton{
+    background-color: #DD2B1C;
+    width: 100%;
+    display: flex;
+    justify-content: space-between !important;
+    height: 2.5em;
+    
+  }
+  .CustomIcon {
+    height: 1.2em;
+    width: 1.2em;
+     padding-right: 2em;
+  }
+  .MainMenuContainer{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 5vh 0 10vh 0;
+    justify-items: end;
+    height: 100%;
+    width: 100%;
+    
+}
+.mainLogo{
+  width: $width;
+  padding: 1vw 0 ;
+
+}
+.sidebarContainer {
+    
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    align-content:center;
+    height:100vh;
+    width:15%;
+    justify-content: space-around;
+    max-width: 250px;
+    min-width:178px;
+  
+    @media (max-width: 460px) {
+      display: none;
+    }
+  
+    @media (min-width: 992px) {
+      /* Styles for desktop and larger screens */
+      
+    }
+}
+.MainMenuItem{
+    margin: 1.5vh 0 1.5vh 0;
+    display: flex;
+    font-size: clamp(0.2em,2.5vw,$font-size-menu); 
+    
+    width: 80%;
+    
+}
+.LangChange{
+  width: calc(#{$width}*100%);
+  display: flex;
+  justify-content: center;
+  
+}
+.Copyright{
+  font-size:0.8em;
+  color: $font-color-menu;
+
+}
+.MenuText {
+  display: flex;
+  font-weight: bold;
+  font-family: "Calibri";
+  font-size: 100%;
+  height: auto;
+  flex: 1;
+  line-height:1;
+  text-transform:none;
+}
+.CustomIcon{
+  color: black;
+}
