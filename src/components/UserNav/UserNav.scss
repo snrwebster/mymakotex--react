@@ -1,0 +1,24 @@
+.userNav {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top:0;
+}
+.user-nav-icons{
+    background-color: transparent;
+    border:none;  
+    padding: 0 5px 0 0;
+    margin:0;
+    cursor: pointer;
+    
+    
+}
+.user-icons{
+    width: 42px;
+}
+.dialog-box{
+  background-color: #888585;
+}
+

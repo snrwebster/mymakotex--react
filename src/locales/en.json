@@ -4,5 +4,11 @@
     "Completed orders":"Completed orders",
     "Pending Orders": "Pending Orders",
     "Customer card":"Customer card",
-    "My labels":"My labels"
+    "My labels":"My labels",
+    "Insert username":"Insert username",
+    "Insert password":"Insert password",
+    "Username":"Username",
+    "Password":"Password",
+    "Sign in":"Sign in"
+    
 }

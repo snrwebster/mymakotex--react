@@ -4,5 +4,10 @@
     "Completed orders":"Ολοκληρωμένες Παραγγελίες",
     "Pending Orders": "Εκκρεμείς Παραγγελίες",
     "Customer card":"Καρτέλα Πελάτη",
-    "My labels":"Προβολή Ετικετών"
+    "My labels":"Προβολή Ετικετών",
+    "Insert username":"Εισάγετε όνομα χρήστη",
+    "Insert password":"Εισάγετε κώδικο",
+    "Username":"Όνομα χρήστη",
+    "Password":"Κωδικός",
+    "Sign in":"Συνδεθείτε"
 }
