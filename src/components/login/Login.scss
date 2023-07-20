@@ -27,15 +27,16 @@
   justify-content: center;
   cursor:pointer;
 }
-.PassInput {
+.PassInput,.userInput {
   border: none;
   position: relative;
-  width: 100%;
+  width: 90%;
 }
-.PassInput:focus-visible {
+
+.PassInput:focus-visible,.userInput:focus-visible {
   outline: none;
 }
-.passWrapper {
+.passWrapper ,.userWrapper {
   border: 1px solid;
   padding:5px 2px;
   border-style: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
@@ -43,7 +44,7 @@
   justify-content: space-between;
   z-index: 100;
 }
-.passWrapper .PassInput:focus {
+.passWrapper:focus-within ,.userWrapper:focus-within {
     border-color: red;
   }
 
