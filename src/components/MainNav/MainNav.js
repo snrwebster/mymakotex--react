@@ -9,35 +9,39 @@ import myMakoLogo from "../../myMakoLogo.png";
 import "./MainNav.scss";
 import GrLang from "../../assets/images/greece.png";
 import EngLang from "../../assets/images/united_kingdom.png";
+import { Link } from "react-router-dom";
 
-
-function MainNav({ changeLanguage ,t}) {
-  
-
+function MainNav({ changeLanguage, t }) {
   const menuItems = [
     {
       label: t("List of request"),
       icon: List,
+      route: "/PriceRequestOrder",
     },
     {
       label: t("Price Request"),
       icon: EuroIcon,
+      route: "/PriceRequest",
     },
     {
       label: t("Pending Orders"),
       icon: HourglassTopIcon,
+      route: "/PendingOrders",
     },
     {
       label: t("Customer card"),
       icon: CustomerCard,
+      route: "/CustomersCard",
     },
     {
       label: t("My labels"),
       icon: LabelIcon,
+      route: "/MyLabels",
     },
     {
       label: t("Completed orders"),
       icon: CompletedIcon,
+      route: "/PriceRequestOrder",
     },
   ];
   const Year = new Date().getFullYear();
@@ -45,7 +49,7 @@ function MainNav({ changeLanguage ,t}) {
   return (
     <>
       <div className="sidebarContainer">
-        <img className="mainLogo" src={myMakoLogo}  alt="logo"/>
+        <img className="mainLogo" src={myMakoLogo} alt="logo" />
         <div className="LangChange">
           <Button onClick={() => changeLanguage("en")}>
             <img src={EngLang} alt="English" />
@@ -58,19 +62,25 @@ function MainNav({ changeLanguage ,t}) {
           <ul className="MainMenuContainer">
             {menuItems.map((item, index) => (
               <li key={index} className="MainMenuItem">
-                <Button
-                  className="MainMenuButton"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#DD2B1C",
-                    "&:hover": {
-                      backgroundColor: "#AF2216",
-                    },
-                  }}
-                >
-                  <img className="CustomIcon" src={item.icon} alt="menu-icon" />
-                  <span className="MenuText"> {item.label}</span>
-                </Button>
+                <Link to={item.route} >
+                  <Button
+                    className="MainMenuButton"
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#DD2B1C",
+                      "&:hover": {
+                        backgroundColor: "#AF2216",
+                      },
+                    }}
+                  >
+                    <img
+                      className="CustomIcon"
+                      src={item.icon}
+                      alt="menu-icon"
+                    />
+                    <span className="MenuText"> {item.label}</span>
+                  </Button>
+                </Link>
               </li>
             ))}
           </ul>

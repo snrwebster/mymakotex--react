@@ -2,68 +2,55 @@ import { BiKey } from "react-icons/bi";
 import Bell from "./../../assets/images/bell.png";
 import { Icon } from "@iconify/react";
 import UserIcon from "../../assets/images/user.png";
-import "./UserNav.scss";
-import { useEffect, useState } from "react";
+import SignOut from "../../assets/images/sign-out.svg";
+import { useNavigate } from "react-router-dom";
 import DialogBox from "./DialogBox";
+import { useState } from "react";
+import "./UserNav.scss";
 
-
-const UserNav = ({ t ,isLoggedIn}) => {
+const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [dialogPosition, setDialogPosition] = useState({ x: 0, y: 0 });
-  const [dialogContent, setDialogContent] = useState(null);
-  const [userName,setUserName]= useState("");
+  const [dialogContent,setDialogContent] = useState(null);
 
-  
+  const navigate = useNavigate();
 
-  
-  
-
-
-  const handleMouseEnter = (e, content) => {
+  const handleOnHoverUser = () => {
     setIsDialogOpen(true);
-    const { clientX, clientY } = e;
-    setDialogPosition({ x: clientX - 40 , y: clientY });
+    const content = !isLoggedIn ? (
+      <p>Sign in</p>
+    ) : (
+      <div>
+        <p>{localStorage.getItem("UserData")}</p>
+        <img onClick={() => navigate("/login")} src={SignOut} alt="Signout" />
+      </div>
+    );
     setDialogContent(content);
   };
-  const handleMouseLeave = (e) => {
-    e.target.style.backgroundColor = 'transparent';
+  const handleOffHoverUser = () => {
     setTimeout(() => {
       setIsDialogOpen(false);
-      
-    }, 100);
+    }, 2000);
   };
 
   return (
     <nav className="userNav">
-      {isDialogOpen && (
-        <DialogBox position={dialogPosition} dialogContent={dialogContent} />
-      )}
-      <button
-        className="user-nav-icons"
-        type="button"
-        id="test"
-        onMouseEnter={(e) => handleMouseEnter(e, "Notifications")}
-        onMouseLeave={handleMouseLeave}
-      >
+      <button className="user-nav-icons" type="button" id="test">
         <img className="user-nav-img" src={Bell} alt="notification bell" />
       </button>
-        {isLoggedIn ? <button
-        className="user-nav-icons"
-        style={{display:'flex'}}
-        type="button"
-        onMouseEnter={(e) => handleMouseEnter(e, "Notifications")}
-        onMouseLeave={handleMouseLeave}
-      >
-        <BiKey style={{ width: "42px", height: "42px" }} />
-        <p>Intrastat</p>
-      </button> : "" }
-      
-      <button
-        className="user-nav-icons"
-        type="button"
-        onMouseEnter={(e) => handleMouseEnter(e, "Notifications")}
-        onMouseLeave={handleMouseLeave}
-      >
+      {isLoggedIn ? (
+        <button
+          className="user-nav-icons"
+          style={{ display: "flex" }}
+          type="button"
+        >
+          <BiKey style={{ width: "42px", height: "42px" }} />
+          <p>Intrastat</p>
+        </button>
+      ) : (
+        ""
+      )}
+
+      <button className="user-nav-icons" type="button">
         <Icon
           className="user-icons"
           icon="ri:shopping-cart-2-line"
@@ -74,11 +61,16 @@ const UserNav = ({ t ,isLoggedIn}) => {
       <button
         className="user-nav-icons"
         type="button"
-        onMouseEnter={(e) => handleMouseEnter(e, "Sign In")}
-        onMouseLeave={(e)=>handleMouseLeave(e)}
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+        onMouseOver={()=>handleOnHoverUser()}
+        onMouseLeave={()=>handleOffHoverUser()}
       >
         <img className="user-nav-img" id="" src={UserIcon} alt="user-profile" />
+        {isDialogOpen && dialogContent && <DialogBox content={dialogContent} />}
       </button>
+      
     </nav>
   );
 };

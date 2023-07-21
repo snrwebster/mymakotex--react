@@ -17,3 +17,6 @@ code {
   width:100vw;
   background-color:#EBEBEB ;
 }
+a{
+  display: contents;
+}

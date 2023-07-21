@@ -1,11 +1,9 @@
-import './UserNav.scss'
 
-const DialogBox = ({dialogContent,position,t}) => {
+
+const DialogBox = ({content}) => {
   return (
-    <div id="dialogBox" className="dialog-box" style ={{position: 'absolute', top: position.y, left: position.x}}>
-      <p>{dialogContent}</p>
-    </div>
-  );
-};
+    <div className="DialogBox" style={{display:"flex"}}>{content}</div>
+  )
+}
 
-export default DialogBox;
+export default DialogBox
