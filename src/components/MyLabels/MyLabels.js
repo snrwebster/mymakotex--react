@@ -1,9 +1,10 @@
-
-
+import { UserSessionChecker } from "../UserSessionChecker";
 const MyLabels = () => {
   return (
-    <div>MyLabels</div>
-  )
-}
+    <UserSessionChecker>
+      <div>MyLabels</div>
+    </UserSessionChecker>
+  );
+};
 
-export default MyLabels
+export default MyLabels;

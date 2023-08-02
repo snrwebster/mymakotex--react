@@ -1,7 +1,8 @@
 import "./Login.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiEyeFill, RiEyeCloseFill } from "react-icons/ri";
 import { apiRequest } from "../../apiRequest";
+import { useNavigate } from "react-router";
 
 const Login = ({
   t,
@@ -10,8 +11,10 @@ const Login = ({
   password,
   setPassword,
   setIsLoggedIn,
+  isLoggedIn,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleTogglePassword = (e) => {
     e.preventDefault();
@@ -25,32 +28,41 @@ const Login = ({
     if (username === "" || password === "") {
       alert("Insert username  and password");
     } else {
-      const METHOD = "POST";
+      const method = "POST";
       const endpoint = "User";
       const data = { username: username, password: password };
-      apiRequest(endpoint, data, METHOD)
+      apiRequest(endpoint, data, method)
         .then((response) => {
           if (response.id === null) {
-            alert("Wrong input");
+            alert(t("Wrong input"));
           } else {
-            setIsLoggedIn(true);
-            const userData = {
-              bmpPath: response.bmpPath,
-              brandID: response.brandID,
-              id: response.id,
-              isAdmin: response.isAdmin,
-              isComposition: response.isComposition,
-              isSticker: response.isSticker,
-              itemCodeID: response.itemCodeID,
-              madeInID: response.madeInID,
-              message: response.message,
-              messageAccepted: response.messageAccepted,
-              name: response.name,
-              traID: response.traID,
-              userDescription: response.userDescription,
-              username: response.username,
-            };
-            localStorage.setItem("UserData", JSON.stringify(userData));
+            try {
+              const dataMob = { table: "cus", boid: response.traID };
+              apiRequest("GetMobileID", dataMob, "POST").then(
+                (mobileResponse) => {
+                  const userData = {
+                    bmpPath: response.bmpPath,
+                    brandID: response.brandID,
+                    id: response.id,
+                    isAdmin: response.isAdmin,
+                    isComposition: response.isComposition,
+                    isSticker: response.isSticker,
+                    itemCodeID: response.itemCodeID,
+                    madeInID: response.madeInID,
+                    message: response.message,
+                    messageAccepted: response.messageAccepted,
+                    name: response.name,
+                    traID: response.traID,
+                    userDescription: response.userDescription,
+                    username: response.username,
+                    MobId: mobileResponse.id,
+                  };
+                  setIsLoggedIn(true);
+                  localStorage.setItem("UserData", JSON.stringify(userData));
+                  navigate("/PriceRequestOrder");
+                }
+              );
+            } catch {}
           }
         })
         .catch((error) => {
@@ -59,7 +71,14 @@ const Login = ({
         });
     }
   };
-
+  useEffect(() => {
+    // Check the isLoggedIn status in localStorage
+    const storedValue = localStorage.getItem("UserSession");
+    if (storedValue === "true") {
+      // If user is logged in, redirect to the desired component
+      navigate("/PriceRequestOrder");
+    }
+  });
   return (
     <div className="formWrap">
       <form className="loginForm">

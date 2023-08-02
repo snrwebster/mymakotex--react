@@ -1,9 +1,10 @@
-
-
+import { UserSessionChecker } from "../UserSessionChecker";
 const ListOfRequest = () => {
   return (
-    <div>ListOfRequest</div>
-  )
-}
+    <UserSessionChecker>
+      <div>ListOfRequest</div>
+    </UserSessionChecker>
+  );
+};
 
-export default ListOfRequest
+export default ListOfRequest;

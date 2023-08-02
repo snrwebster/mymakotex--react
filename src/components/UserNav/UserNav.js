@@ -3,25 +3,36 @@ import Bell from "./../../assets/images/bell.png";
 import { Icon } from "@iconify/react";
 import UserIcon from "../../assets/images/user.png";
 import SignOut from "../../assets/images/sign-out.svg";
-import { useNavigate } from "react-router-dom";
 import DialogBox from "./DialogBox";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./UserNav.scss";
 
 const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [dialogContent,setDialogContent] = useState(null);
-
+  const [dialogContent, setDialogContent] = useState(null);
   const navigate = useNavigate();
 
+  const handleSignout = () => {
+    setIsLoggedIn(null);
+    localStorage.clear("UserData");
+    navigate("/");
+  };
   const handleOnHoverUser = () => {
+    const userName = JSON.parse(localStorage.getItem("UserData"));
     setIsDialogOpen(true);
+    console.log(isLoggedIn);
     const content = !isLoggedIn ? (
-      <p>Sign in</p>
+      <div className="user">
+        <p className="signin">{t("Sign in")}</p>
+      </div>
     ) : (
-      <div>
-        <p>{localStorage.getItem("UserData")}</p>
-        <img onClick={() => navigate("/login")} src={SignOut} alt="Signout" />
+      <div className="user">
+        <div className="SignOut" onClick={handleSignout}>
+          <img className="SignoutIcon" src={SignOut} alt="Signout" />
+          <p>{t("Sign out")}</p>
+        </div>
+        <p className="username">{userName.name}</p>
       </div>
     );
     setDialogContent(content);
@@ -64,13 +75,12 @@ const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
         onClick={(e) => {
           e.preventDefault();
         }}
-        onMouseOver={()=>handleOnHoverUser()}
-        onMouseLeave={()=>handleOffHoverUser()}
+        onMouseOver={() => handleOnHoverUser()}
+        onMouseLeave={() => handleOffHoverUser()}
       >
         <img className="user-nav-img" id="" src={UserIcon} alt="user-profile" />
         {isDialogOpen && dialogContent && <DialogBox content={dialogContent} />}
       </button>
-      
     </nav>
   );
 };

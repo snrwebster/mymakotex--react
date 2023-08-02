@@ -1,9 +1,12 @@
-import React from 'react'
+import { UserSessionChecker } from "../UserSessionChecker";
+
 
 const PendingOrder = () => {
   return (
-    <div>PendingOrder</div>
-  )
-}
+    <UserSessionChecker>
+      <div>PendingOrder</div>
+    </UserSessionChecker>
+  );
+};
 
-export default PendingOrder
+export default PendingOrder;

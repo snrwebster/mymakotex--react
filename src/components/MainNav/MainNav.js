@@ -41,7 +41,7 @@ function MainNav({ changeLanguage, t }) {
     {
       label: t("Completed orders"),
       icon: CompletedIcon,
-      route: "/PriceRequestOrder",
+      route: "/CompletedOrders",
     },
   ];
   const Year = new Date().getFullYear();

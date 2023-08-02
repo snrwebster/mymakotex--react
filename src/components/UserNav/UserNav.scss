@@ -1,3 +1,11 @@
+@keyframes slideFromAbove {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .userNav {
   display: flex;
   width: 100%;
@@ -20,14 +28,58 @@
     width: 42px;
     max-height: 42px;
 }
-.dialog-box{
-  display: flex;
-  min-width:42px;
-  min-height:42px;
+.DialogBox{/* Start with opacity 0 */
+ font-size: 15px;
+
 }
 .user-nav-img{
   max-height: 42px;
 }
 .user-nav-img:hover{
   background-color: grey;
+}
+.user{
+  
+  transform: translateY(-100%); /* Start with translateY at -100% */
+  // overflow: hidden; /* Hide the content that overflows the container */
+  animation: slideFromAbove 0.3s ease-in-out forwards;
+  display: flex;
+  flex-direction: column-reverse;
+  right: 0;
+  top: auto;
+  position: absolute;
+  background-color: white;
+  align-items: flex-start;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+  min-width: 1em;
+  
+}
+.SignoutIcon{
+max-width: 24px;
+padding:0.4em;
+}
+.username{
+  margin:0;
+  padding:1.5em 2em;
+}
+.SignOut{
+  padding:0em 2em;
+}
+.username,.SignOut{
+  display: inline-flex;
+  width: 100%;
+  font-size:1.1em;
+}
+.username:hover,.SignOut:hover{
+  background-color: #DD2B1C;
+}
+.signin{
+  display: inline-flex;
+  width: 100%;
+  font-size:1.1em;
+  padding:1.5em 2em;
+  margin:0;
+}
+.signin:hover{
+  background-color: #DD2B1C;
 }

@@ -9,6 +9,8 @@
     "Insert password":"Insert password",
     "Username":"Username",
     "Password":"Password",
-    "Sign in":"Sign in"
+    "Sign in":"Sign in",
+    "Sign out":"Sign out",
+    "Wrong input":"Wrong input"
     
 }

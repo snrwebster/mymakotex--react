@@ -1,8 +1,10 @@
-
+import {UserSessionChecker} from './../UserSessionChecker'
 
 const PriceRequest = () => {
   return (
-    <div>PriceRequest</div>
+    <UserSessionChecker>
+      <div>PriceRequest</div>
+    </UserSessionChecker>
   )
 }
 

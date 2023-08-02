@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const CustomersCard = () => {
   return (
-    <div>CustomersCard</div>
-  )
-}
+    <UserSessionChecker>
+      <div>CustomersCard</div>
+    </UserSessionChecker>
+  );
+};
 
-export default CustomersCard
+export default CustomersCard;
