@@ -15,13 +15,12 @@ const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
 
   const handleSignout = () => {
     setIsLoggedIn(null);
-    localStorage.clear("UserData");
+    localStorage.clear("UserData","UserCustomers");
     navigate("/");
   };
   const handleOnHoverUser = () => {
     const userName = JSON.parse(localStorage.getItem("UserData"));
     setIsDialogOpen(true);
-    console.log(isLoggedIn);
     const content = !isLoggedIn ? (
       <div className="user">
         <p className="signin">{t("Sign in")}</p>

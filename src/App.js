@@ -12,8 +12,7 @@ import CustomersCard from "./components/CustomersCard/CustomersCard";
 import MyLabels from "./components/MyLabels/MyLabels";
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+ 
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const storedValue = localStorage.getItem("UserSession");
@@ -29,8 +28,6 @@ function App() {
     localStorage.setItem("UserSession", isLoggedIn);
   }, [isLoggedIn]);
 
-
-  
   return (
     <>
       <I18nextProvider i18n={i18n}>
@@ -43,21 +40,25 @@ function App() {
             element={
               <Login
                 t={t}
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
               />
             }
           />
-          <Route exact path="/PriceRequestOrder" element={<ListOfRequest isLoggedIn={isLoggedIn} />} />
+          <Route
+            exact
+            path="/PriceRequestOrder"
+            element={<ListOfRequest isLoggedIn={isLoggedIn} />}
+          />
           <Route exact path="/PriceRequest" element={<PriceRequest />} />
           <Route exact path="/PendingOrders" element={<PendingOrder />} />
           <Route exact path="/CustomersCard" element={<CustomersCard />} />
           <Route exact path="/MyLabels" element={<MyLabels />} />
-          <Route exact path="/CompletedOrders" element={<CompletedOrders t={t} isLoggedIn={isLoggedIn} />} />
+          <Route
+            exact
+            path="/CompletedOrders"
+            element={<CompletedOrders t={t} isLoggedIn={isLoggedIn} />}
+          />
         </Routes>
       </I18nextProvider>
     </>

@@ -4,16 +4,10 @@ import { RiEyeFill, RiEyeCloseFill } from "react-icons/ri";
 import { apiRequest } from "../../apiRequest";
 import { useNavigate } from "react-router";
 
-const Login = ({
-  t,
-  username,
-  setUsername,
-  password,
-  setPassword,
-  setIsLoggedIn,
-  isLoggedIn,
-}) => {
+const Login = ({ t, setIsLoggedIn, isLoggedIn }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleTogglePassword = (e) => {
@@ -59,7 +53,6 @@ const Login = ({
                   };
                   setIsLoggedIn(true);
                   localStorage.setItem("UserData", JSON.stringify(userData));
-                  navigate("/PriceRequestOrder");
                 }
               );
             } catch {}
@@ -72,13 +65,11 @@ const Login = ({
     }
   };
   useEffect(() => {
-    // Check the isLoggedIn status in localStorage
-    const storedValue = localStorage.getItem("UserSession");
-    if (storedValue === "true") {
-      // If user is logged in, redirect to the desired component
-      navigate("/PriceRequestOrder");
+
+    if (isLoggedIn !== null) {
+      navigate("/CompletedOrders");
     }
-  });
+  }, [isLoggedIn,navigate]);
   return (
     <div className="formWrap">
       <form className="loginForm">

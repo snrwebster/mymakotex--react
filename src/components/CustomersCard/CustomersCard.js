@@ -1,4 +1,4 @@
-import React from "react";
+import { UserSessionChecker } from "../UserSessionChecker";
 
 const CustomersCard = () => {
   return (
