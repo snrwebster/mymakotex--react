@@ -2,21 +2,48 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+
 import { useEffect, useState } from "react";
+import { apiRequest } from "../../../apiRequest";
+import { useTranslation } from "react-i18next";
 
+const SearchFieldCustomer = ({ t, userCustomers, setOrders }) => {
+  const { i18n } = useTranslation();
 
-const SearchFieldCustomer = ({ t,userCustomers }) => {
- 
-  const [initialValueSearchField,setInitialValueSearchField] = useState('');
- 
-  const handleOnChange = (e) =>{
+  const [initialValueSearchField, setInitialValueSearchField] = useState("");
+
+  const handleOnChange = (e) => {
     setInitialValueSearchField(e.target.value);
-    console.log(e.target.value);
-  }
-  
-  
-  
-  
+    // console.log(localStorage.getItem("UserCustomers"));
+  };
+
+  useEffect(() => {
+    const currentLanguage = i18n.language;
+    let table = "";
+
+    if (currentLanguage === "en") {
+      if (initialValueSearchField === "ALL CUSTOMERS") {
+        table = "parfindoc";
+      } else {
+        table = `parfindoc where tracodeid=(select code from cus where id= ${initialValueSearchField})`;
+      }
+    } else if (currentLanguage === "gr") {
+      if (initialValueSearchField === "ALL CUSTOMERS") {
+        table = "parfindoc_gr";
+      } else {
+        table = `parfindoc_gr where tracodeid=(select code from cus where id=${initialValueSearchField})`;
+      }
+    }
+    const method = "GET";
+    const data = { columns: "*", table: table };
+    const endpoint = "SelectFromMobile";
+    apiRequest(endpoint, data, method).then((response) => {
+      if (response.status !== null) {
+        setOrders(response.result);
+        console.log(response.result);
+      }
+    });
+  }, [initialValueSearchField]);
 
   return (
     <>
@@ -30,14 +57,14 @@ const SearchFieldCustomer = ({ t,userCustomers }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             label="select customer"
-            value= {initialValueSearchField}
+            value={initialValueSearchField}
             onChange={handleOnChange}
           >
-            {userCustomers.length > 1 ?
-            <MenuItem value='All'>{t("ALL CUSTOMERS")}</MenuItem>
-            :null}
-            {userCustomers.map((userCustomer, index) => (
-              <MenuItem key={index} value={userCustomer.NAME}>
+            {userCustomers.length > 1 ? (
+              <MenuItem value="ALL CUSTOMERS">{t("ALL CUSTOMERS")}</MenuItem>
+            ) : null}
+            {userCustomers.map((userCustomer) => (
+              <MenuItem key={userCustomer.CUSID} value={userCustomer.CUSID}>
                 {userCustomer.NAME}
               </MenuItem>
             ))}

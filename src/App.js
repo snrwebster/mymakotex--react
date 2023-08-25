@@ -32,6 +32,7 @@ function App() {
     <>
       <I18nextProvider i18n={i18n}>
         <MainNav changeLanguage={changeLanguage} t={t} />
+        <div style={{display:'flex', flexDirection:'column' ,flex:1}}>
         <UserNav t={t} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route
@@ -60,6 +61,7 @@ function App() {
             element={<CompletedOrders t={t} isLoggedIn={isLoggedIn} />}
           />
         </Routes>
+        </div>
       </I18nextProvider>
     </>
   );
