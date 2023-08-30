@@ -2,6 +2,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 import { useEffect, useState } from "react";
 import { apiRequest } from "../../../apiRequest";
@@ -49,22 +50,56 @@ const SearchFieldCustomer = ({ t, userCustomers, setOrders }) => {
     <>
       {userCustomers.length > 0 ? (
         <FormControl
+          sx={{
+            width: "400px",
+            ".MuiInputBase-input": {
+              borderColor: "#dd2b1c",
+              "&:focus": {
+                borderColor: "#dd2b1c", // Apply color on focus
+                boxShadow: "0 0 0 0.2rem rgba(221, 43, 28, 0.25)", // Apply the new box shadow
+              },
+            },
+          }}
           style={{ width: "400px" }} /*className="SelectCustomerInput"*/
         >
-          <InputLabel id="demo-simple-select-helper-label">
+          <InputLabel sx={{
+              maxWidth: "400px",
+               // Set the width of the Select component
+            }} id="demo-simple-select-helper-label">
             Select Customer
           </InputLabel>
           <Select
+          MenuProps={{
+            PaperProps: {
+              style: {
+                maxHeight: 300,
+                maxWidth: "400px",
+              },
+            },
+          }}
             labelId="demo-simple-select-helper-label"
             label="select customer"
             value={initialValueSearchField}
             onChange={handleOnChange}
+            sx={{
+              maxWidth: "400px",
+               // Set the width of the Select component
+            }}
           >
             {userCustomers.length > 1 ? (
-              <MenuItem value="ALL CUSTOMERS">{t("ALL CUSTOMERS")}</MenuItem>
+              <MenuItem
+                sx={{
+                  maxWidth: "100%", // Set the width of the Select component
+                }}
+                value="ALL CUSTOMERS"
+              >
+                {t("ALL CUSTOMERS")}
+              </MenuItem>
             ) : null}
             {userCustomers.map((userCustomer) => (
-              <MenuItem key={userCustomer.CUSID} value={userCustomer.CUSID}>
+              <MenuItem sx={{
+                maxWidth: "100%", // Set the width of the Select component
+              }} key={userCustomer.CUSID} value={userCustomer.CUSID}>
                 {userCustomer.NAME}
               </MenuItem>
             ))}

@@ -11,6 +11,17 @@
     "Password":"Password",
     "Sign in":"Sign in",
     "Sign out":"Sign out",
-    "Wrong input":"Wrong input"
-    
+    "Wrong input":"Wrong input",
+    "Date of Order":"Date of Order",
+    "Document Number":"Document Number",
+    "Po Number":"Po Number",
+    "Make Label Number":"Make Label Number",
+    "Selected Order's Items:":"Selected Order's Items:",
+    "Item Code":"Item Code",
+    "Shipping Date":"Shipping Date",
+    "Delivery Note Number":"Delivery Note Number",
+    "Description":"Description",
+    "Quantity":"Quantity",
+    "Price":"Price",
+    "Item Moves":"Item Moves"
 }

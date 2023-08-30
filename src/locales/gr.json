@@ -11,5 +11,17 @@
     "Password":"Κωδικός",
     "Sign in":"Συνδεθείτε",
     "Sign out":"Αποσύνδεση χρήστη",
-    "Wrong input":"Λάθος στοιχεία"
+    "Wrong input":"Λάθος στοιχεία",
+    "Date of Order":"Date of Order",
+    "Document Number":"Αριθμός Παραστατικού",
+    "Po Number":"Po Number",
+    "Make Label Number":"Make Label Number",
+    "Selected Order's Items:":"Είδη Επιλεγμένης Παραγγελίας:",
+    "Item Code":"Κωδικος Είδους",
+    "Shipping Date":"Ημερομηνία Αποστολής",
+    "Delivery Note Number":"Delivery Note Number",
+    "Description":"Περιγραφή",
+    "Quantity":"Ποσότητα",
+    "Price":"Τιμή",
+    "Item Moves":"Κινήσεις Είδους"
 }

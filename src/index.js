@@ -4,14 +4,28 @@ import "./index.css";
 import App from "./App";
 import "./i18n";
 import { BrowserRouter as Router } from "react-router-dom";
+import { createTheme,ThemeProvider } from "@mui/material";
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#dd2b1c",
+    },
+    // ... other palette customization if needed
+  },
+  // ... other theme customizations if needed
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </StrictMode>
+  
+    <ThemeProvider theme={theme}>
+      <Router>
+        <App />
+      </Router>
+    </ThemeProvider>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

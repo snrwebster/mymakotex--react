@@ -53,8 +53,8 @@ const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
           style={{ display: "flex" }}
           type="button"
         >
-          <BiKey style={{ width: "42px", height: "42px" }} />
-          <p>Intrastat</p>
+          <BiKey style={{ width: "21px", height: "21px",display:'flex',justifyContent:'center',alignContent:'center' }} />
+          <p >Intrastat</p>
         </button>
       ) : (
         ""
@@ -64,8 +64,8 @@ const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
         <Icon
           className="user-icons"
           icon="ri:shopping-cart-2-line"
-          width="42"
-          height="42"
+          width="30"
+          height="30"
         />
       </button>
       <button
@@ -77,7 +77,7 @@ const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
         onMouseOver={() => handleOnHoverUser()}
         onMouseLeave={() => handleOffHoverUser()}
       >
-        <img className="user-nav-img" id="" src={UserIcon} alt="user-profile" />
+        <img className="user-nav-img" id="" src={UserIcon} alt="user-profile" style={{width:'30px' ,height:'30px'}} />
         {isDialogOpen && dialogContent && <DialogBox content={dialogContent} />}
       </button>
     </nav>
