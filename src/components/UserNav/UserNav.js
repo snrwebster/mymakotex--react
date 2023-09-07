@@ -39,7 +39,7 @@ const UserNav = ({ t, isLoggedIn, setIsLoggedIn }) => {
   const handleOffHoverUser = () => {
     setTimeout(() => {
       setIsDialogOpen(false);
-    }, 2000);
+    }, 200000);
   };
 
   return (

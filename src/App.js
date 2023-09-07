@@ -19,6 +19,7 @@ function App() {
     const storedUserData = localStorage.getItem("UserData");
     return storedUserData && storedValue === "true";
   });
+  const [userCustomers, setUserCustomers] = useState([]);
 
   const { t, i18n } = useTranslation();
   const changeLanguage = (language) => {
@@ -43,13 +44,14 @@ function App() {
                 t={t}
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
+                setUserCustomers={setUserCustomers}
               />
             }
           />
           <Route
             exact
             path="/PriceRequestOrder"
-            element={<ListOfRequest isLoggedIn={isLoggedIn} />}
+            element={<ListOfRequest t={t} isLoggedIn={isLoggedIn} userCustomers={userCustomers} />}
           />
           <Route exact path="/PriceRequest" element={<PriceRequest />} />
           <Route exact path="/PendingOrders" element={<PendingOrder />} />
@@ -58,7 +60,7 @@ function App() {
           <Route
             exact
             path="/CompletedOrders"
-            element={<CompletedOrders t={t} isLoggedIn={isLoggedIn} />}
+            element={<CompletedOrders t={t} isLoggedIn={isLoggedIn} userCustomers={userCustomers} />}
           />
         </Routes>
         </div>

@@ -1,9 +1,14 @@
+import userEvent from "@testing-library/user-event";
+import SearchFieldCustomer from "../CompletedOrders/CompletedOrderComponents/SearchFieldCustomer";
 import { UserSessionChecker } from "../UserSessionChecker";
-const ListOfRequest = () => {
+
+const ListOfRequest = ({ t , userCustomers}) => {
+  UserSessionChecker();
   return (
-    <UserSessionChecker>
-      <div>ListOfRequest</div>
-    </UserSessionChecker>
+      <>
+        <SearchFieldCustomer t={t} userCustomers={userCustomers}/>
+        {/* <ListOfRequestDatagrid/> */}
+      </>
   );
 };
 

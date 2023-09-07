@@ -4,10 +4,11 @@ import { RiEyeFill, RiEyeCloseFill } from "react-icons/ri";
 import { apiRequest } from "../../apiRequest";
 import { useNavigate } from "react-router";
 
-const Login = ({ t, setIsLoggedIn, isLoggedIn }) => {
+const Login = ({ t, setIsLoggedIn, isLoggedIn ,setUserCustomers}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+ 
   const navigate = useNavigate();
 
   const handleTogglePassword = (e) => {
@@ -28,6 +29,7 @@ const Login = ({ t, setIsLoggedIn, isLoggedIn }) => {
       apiRequest(endpoint, data, method)
         .then((response) => {
           if (response.id === null) {
+            console.log(response);
             alert(t("Wrong input"));
           } else {
             try {
@@ -65,9 +67,31 @@ const Login = ({ t, setIsLoggedIn, isLoggedIn }) => {
     }
   };
   useEffect(() => {
+    if (localStorage.getItem("UserData")) {
+      console.log('Customers');
+      let method = "GET";
+      let endpoint = "UserCustomers";
+      let data = {
+        ID: JSON.parse(localStorage.getItem("UserData")).id,
+        isAdmin: JSON.parse(localStorage.getItem("UserData")).isAdmin,
+      };
+      apiRequest(endpoint, data, method)
+        .then((response) => {
+          if (response) {
+            const customers = JSON.parse(response.result).Table1;
+            setUserCustomers(customers);
+            localStorage.setItem("UserCustomers", JSON.stringify(customers));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [isLoggedIn]);
+  useEffect(() => {
 
     if (isLoggedIn !== null) {
-      navigate("/CompletedOrders");
+      navigate("/PriceRequestOrder");
     }
   }, [isLoggedIn,navigate]);
   return (
